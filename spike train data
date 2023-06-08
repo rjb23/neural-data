@@ -1,0 +1,31 @@
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+# Generate synthetic spike train data
+num_samples = 1000  # Number of spike train samples
+train_length = 100  # Length of the spike train
+num_neurons = 10  # Number of neurons in the hippocampus
+
+# Generate random spike train data
+X = np.random.randint(2, size=(num_samples, train_length, num_neurons))  # Input spike train data
+y = np.random.randint(2, size=num_samples)  # Target spike train data
+
+# Reshape the data for compatibility with the classifier
+X = X.reshape(num_samples, train_length * num_neurons)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train a random forest classifier
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+
+# Make predictions on test data
+y_pred = clf.predict(X_test)
+
+# Print the accuracy of the model
+accuracy = np.mean(y_pred == y_test)
+print("Accuracy:", accuracy)
+
+Accuracy: 0.51
