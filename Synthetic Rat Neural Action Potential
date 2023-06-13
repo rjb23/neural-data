@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+BOX_SIZE = 1.5  # cm
+DURATION = 20 * 60  # 20 minutes in seconds
+SAMPLING_RATE = 1000  # Hz
+THETA_FREQUENCY = 8  # Hz
+
+# Generate time axis
+time = np.linspace(0, DURATION, int(DURATION * SAMPLING_RATE))
+
+# Generate theta wave signal
+theta_wave = np.sin(2 * np.pi * THETA_FREQUENCY * time)
+
+# Generate random neural action potentials
+neural_activity = np.random.rand(len(time))
+
+# Scale neural activity to fit the box size
+neural_activity *= BOX_SIZE
+
+# Plotting
+plt.figure(figsize=(12, 6))
+plt.plot(time, neural_activity)
+plt.title('Synthetic Neural Action Potentials')
+plt.xlabel('Time (s)')
+plt.ylabel('Position (cm)')
+plt.grid(True)
+plt.show()
+
+
+#This program uses the NumPy library to generate a time axis based on the desired duration and sampling rate. 
+#It then generates a synthetic theta wave signal using the sine function. Next, random neural activity is generated using NumPy's random function. The generated neural activity is then scaled to fit the box size.
+#Finally, the program plots the synthetic neural action potentials as a function of time using Matplotlib.
+#You can modify the constants (e.g., box size, duration, sampling rate, theta frequency) according to your requirements. Keep in mind that this is a simplified example, and real neural activity data is much more complex and requires more advanced techniques for accurate generation.
